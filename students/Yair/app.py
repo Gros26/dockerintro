@@ -8,8 +8,12 @@ hood = os.getenv("BARRIO", "Granada")
 @app.get("/")
 def home():
     msg = f"Hola, I am {student} and I live in {hood}"
+
+    os.makedirs("/var/log/app", exist_ok=True)
+
     with open("/var/log/app/visitas.log", "a") as f:
         f.write(msg + "\n")
+
     return msg
 
 @app.get("/health")
